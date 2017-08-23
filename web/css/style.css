@@ -1,0 +1,269 @@
+@font-face{
+	font-family: 'Roboto Condensed';
+	src: url('../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'bid-font';
+	src: url('../fonts/bid_font/Flaticon.svg') format('svg'),
+		url('../fonts/bid_font/Flaticon.woff') format('woff');
+}
+
+.b-page {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Header */
+.b-header {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	height: 80px;
+	background-color: #242424;
+}
+
+.b-header__logo {
+	display: flex;
+	height: 100%;
+}
+
+.b-logo {
+	padding-top: 10px;
+}
+
+.b-logo__img {
+	padding-top: 10px;
+	height: 50px;
+}
+
+.b-title {
+	padding: 0 15px;
+}
+
+.b-title__text {
+	padding-top: 32px;
+	color: #fff;
+}
+
+.b-header__menu {
+	display: flex;
+}
+
+.b-primary-menu__list,
+.b-auth-menu__list {
+	display: flex;
+}
+
+.b-pmenu-item {
+	list-style-type: none;
+	margin: 32px 0 0 20px;
+}
+
+.b-amenu-item {
+	list-style-type: none;
+	margin: 32px 0 0 20px;
+}
+
+.b-menu-link {
+	color: #fff;
+	text-decoration: none;
+}
+
+
+/* Sidebar & Content */
+.b-content {
+	display: flex;
+	justify-content: space-between;
+}
+
+.b-content__sidebar {
+	flex-basis: content;
+	margin-top: 17px;
+}
+
+.b-categories {
+	padding: 0;
+	margin: 0;
+	background-color: #fbfbfb;
+}
+
+.b-categories__item {
+	list-style-type: none;
+	padding: 25px;
+	border: 1px solid #e7e7e7;
+}
+
+.b-categories__link {
+	color: #cf1e35;
+	text-decoration: none;
+}
+
+.b-categories__concert::before,
+.b-categories__theater::before,
+.b-categories__disco::before,
+.b-categories__cinema::before,
+.b-categories__seminar::before,
+.b-categories__kids::before,
+.b-categories__quest::before,
+.b-categories__sports::before
+{
+	font-family: 'bid-font';
+	font-size: 2.5em;
+	padding-right: 5px;
+}
+
+.b-categories__concert::before {
+	content: '\f107';
+	color: #2BA649;
+}
+
+.b-categories__theater::before {
+	content: '\f106';
+	color: #E76049;
+}
+
+.b-categories__disco::before {
+	content: '\f100';
+	color: #2EB398;
+}
+
+.b-categories__cinema::before {
+	content: '\f105';
+	color: #393939;
+}
+
+.b-categories__seminar::before {
+	content: '\f104';
+	color: #90119F;
+}
+
+.b-categories__kids::before {
+	content: '\f103';
+	color: #FFDA44;
+}
+
+.b-categories__quest::before {
+	content: '\f102';
+	color: #FD4424;
+}
+
+.b-categories__sports::before {
+	content: '\f101';
+	color: #254FC6;
+}
+
+.b-categories__disco::before,
+.b-categories__sports::before {
+	font-size: 2.8em;
+}
+
+.b-main-content {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex-grow: 2;
+	margin-left: 40px;
+}
+
+.b-main-content__article {
+	width: 30%;
+	margin: 17px;
+	padding-bottom: 15px;
+	border-bottom: 3px solid #2eb398
+}
+
+.b-article-pic__image {
+	width: 100%;
+}
+
+.b-article-wrap {
+	width: 90%;
+	margin: 0 auto;
+	text-align: justify;
+}
+
+.b-article-meta__info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.b-meta-text {
+	color: #a9a9a9;
+	padding-top: 10px;
+	font-weight: bold
+}
+
+.b-about-header {
+	padding: 10px 0;
+	margin: 0;
+}
+
+.b-article-buttons {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.b-article-about__buy,
+.b-article-about__bid {
+	padding-left: 10px;
+}
+
+
+/* CONTACTS */
+
+.b-contact-form__container {
+	display: flex;
+	flex-direction: row;
+}
+
+.b-contact-form-header {
+	width: 91%;
+	margin: 2% 0 3% 0;
+	font-size: 36px;
+}
+
+.form-group {
+	width: 100%;
+}
+
+.b-main-content__contact-form-text {
+	margin: 1% 0 0 15%;
+}
+
+.b-contact-form-text {
+	list-style-type: none;
+}
+
+
+/* REGISTER */
+
+.register-form-container,
+.register-form {
+	width: 80%;
+	margin-top: 2.5%;
+}
+
+.b-register-form-header {
+	width: 64%;
+	margin: 2% 0 3% 0;
+	font-size: 36px;
+}
+
+
+/* LOGIN */
+
+.login-form-container,
+.login-form {
+	width: 80%;
+	margin-top: -3%;
+}
+
+.b-login-form-header {
+	width: 64%;
+	margin: 2% 0 3% 0;
+	font-size: 36px;
+}
