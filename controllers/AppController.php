@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: muinh
- * Date: 8/24/17
- * Time: 1:06 PM
- */
+namespace app\controllers;
+
+use yii\web\Controller;
+
+class AppController extends Controller
+{
+
+}

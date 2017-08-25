@@ -7,11 +7,14 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\Category;
 
 AppAsset::register($this);
 ?>
 
-<?php $this->beginPage() ?>
+<?php $this->beginPage();
+    $this->title = 'bid gl&hf';
+?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -30,7 +33,7 @@ AppAsset::register($this);
 						<p class="b-title__text">good luck</p>
 					</div>	
 				<div class="b-logo">
-					<img class="b-logo__img" src="images/logo.png" alt=".bid logo">
+                    <?= Html::img("@web/images/logo.png", ['alt' => '.bid logo', 'class' => 'b-logo__img']) ?>
 				</div>
 				<div class="b-title">
 					<p class="b-title__text">have fun</p>
@@ -56,10 +59,11 @@ AppAsset::register($this);
 		<section class="b-content">
 			<aside class="b-content__sidebar">
 				<ul class="b-categories">
-                    <?= \app\models\Category::renderCategories();?>
+                    <?= Category::renderCategories();?>
 				</ul>
 			</aside>
 	<?= $content ?>
+        </section>
 
 	<?php $this->endBody() ?>
 </body>

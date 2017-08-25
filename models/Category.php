@@ -1,7 +1,9 @@
 <?php
 
 namespace app\models;
+
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 use Yii;
 
 class Category extends ActiveRecord
@@ -28,7 +30,7 @@ class Category extends ActiveRecord
         $categories = self::getCategories();
         //render categories
         foreach($categories as $category) {
-            echo '<li class="b-categories__item b-categories__'.$category["name"].'"><a href="#" class="b-categories__link">' . $category["title"] . '</a></li>';
+            echo '<li class="b-categories__item b-categories__'.$category["name"].'"><a href="'. Url::toRoute(['category/view', 'id' => $category['category_id']]) . '" class="b-categories__link">' . $category["title"] . '</a></li>';
         }
 
         //set categories cached
