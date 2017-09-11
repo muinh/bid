@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: muinh
- * Date: 8/22/17
- * Time: 1:22 PM
- */
 
 namespace app\models;
 use yii\db\ActiveRecord;

@@ -2,9 +2,10 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
-use Yii;
+use yii\helpers\Html;
 
 class Category extends ActiveRecord
 {
@@ -13,7 +14,8 @@ class Category extends ActiveRecord
         return 'category';
     }
 
-    public static function getCategories() {
+    public static function getCategories() 
+    {
 
         //get cached categories
         $catCached = Yii::$app->cache->get('catCached');
@@ -26,18 +28,20 @@ class Category extends ActiveRecord
 
     }
 
-    public static function renderCategories() {
+    public static function renderCategories() 
+    {
         $categories = self::getCategories();
         //render categories
         foreach($categories as $category) {
-            echo '<li class="b-categories__item b-categories__'.$category["name"].'"><a href="'. Url::toRoute(['category/view', 'id' => $category['category_id']]) . '" class="b-categories__link">' . $category["title"] . '</a></li>';
+            echo Html::tag('li', Html::a($category["title"], ['category/view', 'id' => $category['category_id']], ['class' => 'b-categories__link']), ['class' => ['b-categories__item', 'b-categories__'.$category["name"].'']]);
         }
 
         //set categories cached
         Yii::$app->cache->set('catCached', $categories, 60);
     }
 
-    public function getEvents() {
+    public function getEvents() 
+    {
         return $this->hasMany(Event::className(), ['category_id' => 'category_id']);
     }
 }

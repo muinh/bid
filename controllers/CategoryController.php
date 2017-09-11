@@ -1,9 +1,12 @@
 <?php
 
 namespace app\controllers;
+use Yii;
+use yii\web\HttpException;
+
 use app\models\Category;
 use app\models\Event;
-use Yii;
+
 
 class CategoryController extends AppController
 {
@@ -15,7 +18,11 @@ class CategoryController extends AppController
 
     public function actionView($id)
     {
-        $id = Yii::$app->request->get('id');
+        $category = Category::findOne($id);
+        if(empty($category)) {
+            throw new HttpException(404, 'Такой категории не существует.');
+        }
+
         $events = Event::find()->where(['category_id' => $id])->all();
         return $this->render('view', compact('events'));
     }

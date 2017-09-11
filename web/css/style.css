@@ -1,3 +1,5 @@
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
 @font-face{
 	font-family: 'Roboto Condensed';
 	src: url('../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf') format('truetype');
@@ -71,10 +73,12 @@
 .b-menu-link {
 	color: #fff;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 
 /* Sidebar & Content */
+
 .b-content {
 	display: flex;
 	justify-content: space-between;
@@ -213,6 +217,33 @@
 }
 
 
+/* FOOTER */
+
+.b-footer {
+    width: 100%;
+    background-color: #242424;
+    color: #fff;
+}
+
+.b-footer__wrapper {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    margin: 0 auto;
+    width: 180px;
+    height: 80px;
+}
+
+.b-footer__logo {
+    margin-left: 23%;
+}
+
+.b-footer__text {
+    width: 220px;
+    padding-top: 5px;
+}
+
+
 /* CONTACTS */
 
 .b-contact-form__container {
@@ -266,4 +297,12 @@
 	width: 64%;
 	margin: 2% 0 3% 0;
 	font-size: 36px;
+}
+
+/* EVENT PAGE */
+
+/* CART */
+
+.del-item {
+	cursor: pointer;
 }
