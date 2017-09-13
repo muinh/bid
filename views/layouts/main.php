@@ -37,7 +37,7 @@ AppAsset::register($this);
 				<div class="b-logo">
                     <?= 
                     // Html::img("@web/images/logo.png", ['alt' => '.bid logo', 'class' => 'b-logo__img']) 
-                    Html::a(Html::img('@web/images/logo.png', ['alt' => '.bid logo', 'class' => 'b-logo__img']), '/');
+                    Html::a(Html::img('@web/images/logo.png', ['alt' => '.bid logo', 'class' => 'b-logo__img']), '/bid.loc/web/');
                     ?>
 				</div>
 				<div class="b-title">
@@ -47,7 +47,7 @@ AppAsset::register($this);
 			<div class="b-header__menu">
 				<div class="b-primary-menu">
 					<ul class="b-primary-menu__list">
-						<li class="b-pmenu-item"><a href="/" class="b-menu-link">Події</a></li>
+						<li class="b-pmenu-item"><a href="/bid.loc/web/" class="b-menu-link">Події</a></li>
 						<li class="b-pmenu-item"><a href="about" class="b-menu-link">Про сервіс</a></li>
 						<li class="b-pmenu-item"><a href="support" class="b-menu-link">Як користуватись?</a></li>
 						<li class="b-pmenu-item"><a href="contact" class="b-menu-link">Напишіть нам</a></li>
@@ -63,7 +63,7 @@ AppAsset::register($this);
 		</header>
 		<section class="b-content">
 			<aside class="b-content__sidebar">
-				<ul class="b-categories">
+				<ul class="b-categories menu">
                     <?= Category::renderCategories();?>
 				</ul>
 			</aside>
@@ -81,7 +81,15 @@ AppAsset::register($this);
         </footer>
         <?php
             Modal::begin([
-                'header' => '<h2>Корзина</h2>',
+                'header' => '<div class="tabbable-panel">
+						        <div class="tabbable-line">
+							        <ul class="nav nav-tabs ">
+								        <li class="active b-tab">
+									        <h3 class="cart-title">Корзина</h3>
+								        </li>
+							        </ul>
+						        </div>
+					        </div>',
                 'id' => 'cart',
                 'size' => 'modal-lg',
                 'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">

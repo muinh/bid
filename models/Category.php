@@ -31,9 +31,21 @@ class Category extends ActiveRecord
     public static function renderCategories() 
     {
         $categories = self::getCategories();
-        //render categories
         foreach($categories as $category) {
-            echo Html::tag('li', Html::a($category["title"], ['category/view', 'id' => $category['category_id']], ['class' => 'b-categories__link']), ['class' => ['b-categories__item', 'b-categories__'.$category["name"].'']]);
+            ?>
+                <li class="b-categories__item b-categories__<?= $category["name"]; ?>">
+                    <ul class="submenu">
+                        <li>
+                            <?= Html::a(
+                                    Html::tag('span', mb_strtoupper($category["title"]),
+                                    ['class' => 'b-categories__link']),
+                                ['category/view', 'id' => $category['category_id']],
+                                ['class' => [$category["name"], 'b-categories__alink']]
+                            ) ?>
+                        </li>
+                    </ul>
+                </li>
+            <?php
         }
 
         //set categories cached

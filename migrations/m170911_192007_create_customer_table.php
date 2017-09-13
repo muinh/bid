@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `customer`.
  */
-class m170822_095441_create_customer_table extends Migration
+class m170911_192007_create_customer_table extends Migration
 {
     /**
      * @inheritdoc
@@ -14,6 +14,8 @@ class m170822_095441_create_customer_table extends Migration
     {
         $this->createTable('customer', [
             'customer_id' => $this->primaryKey(),
+            'login' => $this->string()->notNull(),
+            'password' => $this->string()->notNull(),
             'first_name' => $this->string(),
             'last_name' => $this->string(),
             'phone' => $this->string(),

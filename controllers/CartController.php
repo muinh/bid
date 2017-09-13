@@ -2,8 +2,11 @@
 
 namespace app\controllers;
 use Yii;
+
 use app\models\Event;
 use app\models\Cart;
+use app\models\Order;
+use app\models\OrderItems;
 
 
 class CartController extends AppController
@@ -14,7 +17,9 @@ class CartController extends AppController
         $qty = Yii::$app->request->get('qty');
         $qty = !$qty ? 1 : $qty;
         $event = Event::findOne($id);
+
         if (empty($event)) return false;
+
         $session = Yii::$app->session;
         $session->open();
         $cart = new Cart();
@@ -22,6 +27,7 @@ class CartController extends AppController
         if(!Yii::$app->request->isAjax) {
             return $this->redirect(Yii::$app->request->referrer);
         }
+
         $this->layout = false;
         return $this->render('preview', compact('session'));
     }
@@ -58,6 +64,40 @@ class CartController extends AppController
 
     public function actionView()
     {
-        return $this->render('view');
+        $session = Yii::$app->session;
+        $session->open();
+        $order = new Order();
+        if ($order->load(Yii::$app->request->post())) {
+           $order->quantity = $session['cart.qtyTotal'];
+           $order->amount = $session['cart.amount'];
+           if ($order->save()) {
+               $this->saveOrderItems($session['cart'], $order->order_id);
+               Yii::$app->session->setFlash('success', 'Ваш заказ принят. 
+               Вся информация относительно получения билетов отправлена на указанную почту.');
+               $session->remove('cart');
+               $session->remove('cart.qtyTotal');
+               $session->remove('cart.amount');
+               return $this->refresh();
+           } else {
+               Yii::$app->session->setFlash('error', 'Ошибка оформления заказа.
+               Попробуйте еще раз или напишите менеджеру через форму обратной связи.');
+           }
+        }
+
+        return $this->render('view', compact('session','order'));
+    }
+
+    protected function saveOrderItems($items, $order_id)
+    {
+        foreach ($items as $id => $item) {
+            $order_items = new OrderItems();
+            $order_items->order_id = $order_id;
+            $order_items->product_id = $id;
+            $order_items->name = $item['name'];
+            $order_items->price = $item['price'];
+            $order_items->quantity = $item['qty'];
+            $order_items->amount = $item['price'] * $item['qty'];
+            $order_items->save();
+        }
     }
 }

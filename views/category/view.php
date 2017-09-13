@@ -55,8 +55,8 @@ use yii\helpers\Url;
     </article>
     <?php endforeach; ?>
 <?php else: ?>
-    <section class="b-main-content"
-        <h2>There are no events in here!</h2>
+    <section class="b-main-content">
+        <h3 class="b-main-content__cat-empty">В этой категории пока нет событий</h3>
     </section>
 <?php endif; ?>
 </section>

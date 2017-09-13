@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `event`.
  */
-class m170824_081302_create_event_table extends Migration
+class m170911_192234_create_event_table extends Migration
 {
     public function safeUp()
     {
