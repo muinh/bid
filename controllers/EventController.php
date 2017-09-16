@@ -13,7 +13,7 @@ class EventController extends AppController
     {
         $event = Event::findOne($id);
         if (empty($event)) {
-            throw new \yii\web\HttpException(404, 'Такого мероприятия не существует :(');
+            throw new \yii\web\HttpException(404, 'Такого события не существует :(');
         }
         return $this->render('view', compact('event'));
     }

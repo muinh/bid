@@ -20,7 +20,7 @@ class CategoryController extends AppController
     {
         $category = Category::findOne($id);
         if(empty($category)) {
-            throw new HttpException(404, 'Такой категории не существует.');
+            throw new HttpException(404, 'Такой категории не существует');
         }
 
         $events = Event::find()->where(['category_id' => $id])->all();

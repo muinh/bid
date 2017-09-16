@@ -31,6 +31,20 @@ class OrderItems extends ActiveRecord
         return $this->hasOne(Order::className(), ['order_id' => 'order_id']);
     }
 
+    public static function saveOrderItems($items, $order_id)
+    {
+        foreach ($items as $id => $item) {
+            $order_items = new OrderItems();
+            $order_items->order_id = $order_id;
+            $order_items->product_id = $id;
+            $order_items->name = $item['name'];
+            $order_items->price = $item['price'];
+            $order_items->quantity = $item['qty'];
+            $order_items->amount = $item['price'] * $item['qty'];
+            $order_items->save();
+        }
+    }
+
     /**
      * @inheritdoc
      */

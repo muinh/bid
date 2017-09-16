@@ -34,29 +34,29 @@ use yii\widgets\ActiveForm;
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_default_3">
-                                <div>
-                                    <p>
+                                <div id="cart">
+                                <div class="cart-container">
                                         <?php if(!empty($session['cart'])): ?>
                                         <div class="table-responsive">
                                             <table class="table table-hover table-striped">
                                                 <thead>
-                                                <tr>
-                                                    <th>Фото</th>
-                                                    <th>Наименование</th>
-                                                    <th>Кол-во</th>
-                                                    <th>Цена</th>
-                                                    <th>Сумма</th>
-                                                    <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
-                                                </tr>
+                                                    <tr>
+                                                        <th>Фото</th>
+                                                        <th>Наименование</th>
+                                                        <th>Кол-во</th>
+                                                        <th>Цена</th>
+                                                        <th>Сумма</th>
+                                                        <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                 <?php foreach($session['cart'] as $id => $event): ?>
                                                     <tr>
                                                         <td><?= Html::img("@web/images/events/{$event['img']}", ['alt' => $event['name'], 'height' => 64]) ?></td>
-                                                        <td><a href="<?= Url::to(['event/view', 'id' => $id]) ?>"><?= $event['name'] ?></a></td>
+                                                        <td><a class="site-standard__link" href="<?= Url::to(['event/view', 'id' => $id]) ?>"><?= $event['name'] ?></a></td>
                                                         <td><?= $event['qty'] ?></td>
                                                         <td><?= $event['price'] ?></td>
-                                                        <td><?= $event['qty'] * $event['price'] ?>.00</td>
+                                                        <td><?= number_format($event['qty'] * $event['price'],2, '.', '') ?></td>
                                                         <td><span data-id="<?= $id ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
                                                     </tr>
                                                 <?php endforeach ?>
@@ -66,7 +66,7 @@ use yii\widgets\ActiveForm;
                                                 </tr>
                                                 <tr>
                                                     <td colspan="5">На сумму:</td>
-                                                    <td><?= $session['cart.amount']?>.00 грн</td>
+                                                    <td><?= number_format($session['cart.amount'], 2, '.', '')?> грн</td>
                                                 </tbody>
                                             </table>
                                             <hr>
@@ -81,7 +81,7 @@ use yii\widgets\ActiveForm;
                                         <?php else: ?>
                                             <h3>Корзина пуста</h3>
                                         <?php endif; ?>
-                                    </p>
+                                </div>
                                 </div>
                             </div>
                         </div>

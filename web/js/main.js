@@ -53,3 +53,17 @@ $('#cart .modal-body').on('click', '.del-item', function(){
         }
     });
 });
+
+$('#cart .cart-container').on('click', '.del-item', function(){
+    let id = $(this).data('id');
+    $.ajax({
+        url: '/bid.loc/web/index.php/cart/delete',
+        data: {id: id},
+        type: 'GET',
+        success: function(response) {
+            if(!response) console.log('Помилка в запиті');
+            showCart(response);
+            location.reload();
+        }
+    });
+});

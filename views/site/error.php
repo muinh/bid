@@ -6,20 +6,15 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = $name;
 ?>
-<section class="b-main-content">
+<section class="b-main-content bg-404">
     <div class="site-error">
-        <h1><?= Html::encode($this->title) ?></h1>
-        <div class="alert alert-danger">
-            <?= nl2br(Html::encode($message)) ?>
-        </div>
-        <p>
-            Во время обработки запроса произошла ошибка.
-        </p>
-        <p>
-            Вернуться на <a href="<?= \yii\helpers\Url::to(['/'])?>">главную страницу</a>.
+        <h3 class="site-error__header"><?= nl2br(Html::encode($message)) ?></h3>
+        <p class="site-error__message">
+            Вернуться на <a class="site-standard__link" href="<?= Url::to(['/'])?>">главную страницу</a>.
         </p>
     </div>
 </section>

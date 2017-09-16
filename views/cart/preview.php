@@ -1,6 +1,7 @@
 <?php
 
 use \yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 
@@ -20,7 +21,8 @@ use \yii\helpers\Html;
             <?php foreach($session['cart'] as $id => $event): ?>
                 <tr>
                     <td><?= Html::img("@web/images/events/{$event['img']}", ['alt' => $event['name'], 'height' => 64]) ?></td>
-                    <td><?= $event['name'] ?></td>
+
+                    <td><a class="site-standard__link" href="<?= Url::to(['event/view', 'id' => $id]) ?>"><?= $event['name'] ?></a></td>
                     <td><?= $event['qty'] ?></td>
                     <td><?= $event['price'] ?></td>
                     <td><span data-id="<?= $id ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
@@ -32,7 +34,7 @@ use \yii\helpers\Html;
                 </tr>
                 <tr>
                     <td colspan="4">На сумму:</td>
-                    <td><?= $session['cart.amount']?>.00 грн</td>
+                    <td><?= number_format($session['cart.amount'], 2, '.', '')?> грн</td>
                 </tr>
             </tbody>
         </table>
