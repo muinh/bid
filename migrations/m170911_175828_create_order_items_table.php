@@ -20,7 +20,7 @@ class m170911_175828_create_order_items_table extends Migration
             'price' => $this->decimal(8,2)->notNull(),
             'quantity' => $this->integer()->notNull(),
             'amount' => $this->decimal(8,2)->notNull(),
-        ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB'););
+        ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
     }
 
     /**

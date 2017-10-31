@@ -29,23 +29,23 @@ use yii\widgets\ActiveForm;
                     <div class="tabbable-line">
                         <ul class="nav nav-tabs ">
                             <li class="active b-tab">
-                                <h3 class="cart-title">Оформление заказа</h3>
+                                <h3 class="cart-title">Оформлення замовлення</h3>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_default_3">
                                 <div id="cart">
-                                <div class="cart-container">
+                                    <div class="cart-container">
                                         <?php if(!empty($session['cart'])): ?>
                                         <div class="table-responsive">
                                             <table class="table table-hover table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Фото</th>
-                                                        <th>Наименование</th>
-                                                        <th>Кол-во</th>
-                                                        <th>Цена</th>
-                                                        <th>Сумма</th>
+                                                        <th>Назва</th>
+                                                        <th>Кількість</th>
+                                                        <th>Ціна</th>
+                                                        <th>Сума</th>
                                                         <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
                                                     </tr>
                                                 </thead>
@@ -61,27 +61,36 @@ use yii\widgets\ActiveForm;
                                                     </tr>
                                                 <?php endforeach ?>
                                                 <tr>
-                                                    <td colspan="5">Билетов в корзине:</td>
+                                                    <td colspan="5">Квитків в кошику:</td>
                                                     <td><?= $session['cart.qtyTotal'] ?> шт</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="5">На сумму:</td>
+                                                    <td colspan="5">На суму:</td>
                                                     <td><?= number_format($session['cart.amount'], 2, '.', '')?> грн</td>
                                                 </tbody>
                                             </table>
                                             <hr>
-                                            <?php $form = ActiveForm::begin() ?>
-                                            <?= $form->field($order, 'name') ?>
-                                            <?= $form->field($order, 'email') ?>
-                                            <?= $form->field($order, 'phone') ?>
-                                            <?= $form->field($order, 'address') ?>
-                                            <?= Html::submitButton('Заказать', ['class' => 'btn btn-success']) ?>
-                                            <?php ActiveForm::end(); ?>
+                                            <?php
+                                                $id = Yii::$app->user->id;
+                                                $form = ActiveForm::begin();
+                                                if(is_null($id)) { ?>
+                                                    <?= $form->field($order, 'name'); ?>
+                                                    <?= $form->field($order, 'email'); ?>
+                                                    <?= $form->field($order, 'phone'); ?>
+                                                    <?= $form->field($order, 'address'); ?>
+                                                <?php
+                                                } else { ?>
+                                                    <?= $form->field($order, 'customer_id')
+                                                        ->hiddenInput(['value' => $id])
+                                                        ->label(false) ;
+                                                } ?>
+                                            <?= Html::submitButton('Замовити', ['class' => 'btn btn-success']);
+                                                ActiveForm::end(); ?>
                                         </div>
                                         <?php else: ?>
-                                            <h3>Корзина пуста</h3>
+                                            <h3>Кошик пустий</h3>
                                         <?php endif; ?>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,15 +1,12 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+
 use app\assets\AppAsset;
 use app\models\Category;
+use app\models\User;
 
 AppAsset::register($this);
 ?>
@@ -33,11 +30,10 @@ AppAsset::register($this);
 			<div class="b-header__logo">
 				<div class="b-title">
 						<p class="b-title__text">good luck</p>
-					</div>	
+					</div>
 				<div class="b-logo">
-                    <?= 
-                    // Html::img("@web/images/logo.png", ['alt' => '.bid logo', 'class' => 'b-logo__img']) 
-                    Html::a(Html::img('@web/images/logo.png', ['alt' => '.bid logo', 'class' => 'b-logo__img']), '/bid.loc/web/');
+                    <?=
+                        Html::a(Html::img('@web/images/logo.png', ['alt' => '.bid logo', 'class' => 'b-logo__img']), '/bid.loc/web/');
                     ?>
 				</div>
 				<div class="b-title">
@@ -45,20 +41,23 @@ AppAsset::register($this);
 				</div>
 			</div>
 			<div class="b-header__menu">
-				<div class="b-primary-menu">
-					<ul class="b-primary-menu__list">
-						<li class="b-pmenu-item"><a href="/bid.loc/web/" class="b-menu-link">Події</a></li>
-						<li class="b-pmenu-item"><a href="about" class="b-menu-link">Про сервіс</a></li>
-						<li class="b-pmenu-item"><a href="support" class="b-menu-link">Як користуватись?</a></li>
-						<li class="b-pmenu-item"><a href="contact" class="b-menu-link">Напишіть нам</a></li>
-					</ul>
-				</div>
-				<div class="b-auth-menu">
-					<ul class="b-auth-menu__list">
-						<li class="b-amenu-item"><a class="b-menu-link" onclick="return getCart()"><i class="fa-lg fa fa-shopping-cart fa-fw" aria-hidden="true"></i></a></li>
-						<li class="b-amenu-item"><a href="register" class="b-menu-link">Реєстрація / Вхід</a></li>
-					</ul>
-				</div>
+				<nav id="nav-wrap" class="b-primary-menu">
+					<ul id="nav" class="b-primary-menu__list">
+                        <li class="b-pmenu-item"><a href="<?= Url::to(['/']) ?>" class="b-menu-link">Події</a></li>
+                        <li class="b-pmenu-item"><a href="<?= Url::to(['/about']) ?>" class="b-menu-link">Про сервіс</a></li>
+                        <li class="b-pmenu-item"><a href="<?= Url::to(['/contact']) ?>" class="b-menu-link">Напишіть нам</a></li>
+                        <li class="b-pmenu-item"><a class="b-menu-link" onclick="return getCart()"><i class="fa-lg fa fa-shopping-cart fa-fw" aria-hidden="true"></i></a></li>
+                        <?php if (Yii::$app->user->isGuest): ?>
+                            <li class="b-pmenu-item"><a href="<?= Url::to(['/login']) ?>" class="b-menu-link">Вхід в аккаунт</a></li>
+                        <?php endif ?>
+                        <?php if (!Yii::$app->user->isGuest): ?>
+                            <li class="b-pmenu-item"><a href="<?= Url::to(['/logout']) ?>" class="b-menu-link"><?= Yii::$app->user->identity['username'] ?> (Вихід)</a></li>
+                        <?php endif ?>
+                        <?php if (User::isAdmin()): ?>
+                            <li class="b-pmenu-item"><a href="<?= Url::to(['/admin']) ?>" class="b-menu-link">Адмін-панель</a></li>
+                        <?php endif ?>
+                    </ul>
+                </nav>
 			</div>
 		</header>
 		<section class="b-content">
@@ -75,7 +74,7 @@ AppAsset::register($this);
 					<?= Html::a(Html::img('@web/images/logo.png', ['alt' => '.bid logo', 'class' => 'b-logo__img']), '/'); ?>
 				</div>
 				<div class="b-footer__text">
-					&copy; 2017 All rights reserved
+					&copy; 2017 Усі права захищено.
 				</div>
 			</div>
         </footer>
@@ -85,7 +84,7 @@ AppAsset::register($this);
 						        <div class="tabbable-line">
 							        <ul class="nav nav-tabs ">
 								        <li class="active b-tab">
-									        <h3 class="cart-title">Корзина</h3>
+									        <h3 class="cart-title">Кошик</h3>
 								        </li>
 							        </ul>
 						        </div>
@@ -93,18 +92,17 @@ AppAsset::register($this);
                 'id' => 'cart',
                 'size' => 'modal-lg',
                 'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">
-                                Продолжить покупки
+                                Продовжити покупки
                              </button>
                              <a href="'. Url::to(['cart/view']) .'" type="button" class="btn btn-success">
-                                Оформить заказ
+                                Оформити замовлення
                              </a>
                             <button type="button" class="btn btn-danger" onclick="clearCart()">
-                                Очистить корзину
+                                Очистити кошик
                             </button>',
             ]);
             Modal::end();
         ?>
-
 	<?php $this->endBody() ?>
 </body>
 </html>

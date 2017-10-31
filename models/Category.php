@@ -2,38 +2,33 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveRecord;
-use yii\helpers\Url;
 use yii\helpers\Html;
 
 class Category extends ActiveRecord
 {
+    /**
+     * Returns the name of the table.
+     *
+     * @return string
+     */
     public static function tableName()
     {
         return 'category';
     }
 
-    public static function getCategories() 
-    {
-
-        //get cached categories
-        $catCached = Yii::$app->cache->get('catCached');
-
-        if ($catCached) {
-            return $catCached;
-        } else {
-            return self::find()->indexBy('category_id')->asArray()->all();
-        }
-
-    }
-
+    /**
+     * Renders categories sidebar with
+     * dynamic changing colors and names.
+     *
+     * @return void
+     */
     public static function renderCategories() 
     {
-        $categories = self::getCategories();
+        $categories = self::find()->indexBy('category_id')->asArray()->all();
         foreach($categories as $category) {
             ?>
-                <li class="b-categories__item b-categories__<?= $category["name"]; ?>">
+                <li class="b-categories__item b-categories__<?= $category["name"]; ?> transition3">
                     <ul class="submenu">
                         <li>
                             <?= Html::a(
@@ -47,11 +42,13 @@ class Category extends ActiveRecord
                 </li>
             <?php
         }
-
-        //set categories cached
-        Yii::$app->cache->set('catCached', $categories, 60);
     }
 
+    /**
+     * Returns events from special category.
+     *
+     * @return string
+     */
     public function getEvents() 
     {
         return $this->hasMany(Event::className(), ['category_id' => 'category_id']);

@@ -20,30 +20,28 @@ use yii\helpers\Url;
                 </div>
             </div>
             <div class="b-article-details">
-                <div>
-                    <ul class="list-group list-group-flush list-padding">
-                        <li class="list-group-item">Дата мероприятия
-                            <span class="badge badge-success list-group-item__order-badge">
-                                <?= $event->date; ?>
-                            </span>
-                        </li>
-                        <li class="list-group-item">Место проведения
-                            <span class="badge badge-success list-group-item__order-badge">
-                                <?= $event->place; ?>
-                            </span>
-                        </li>
-                        <li class="list-group-item">Город
-                            <span class="badge badge-success list-group-item__order-badge">
-                                <?= $event->city; ?>
-                            </span>
-                        </li>
-                        <li style="margin-top: 30px" class="list-group-item">Укажите количество билетов
-                            <span style="float:right;">
-                                <input style="height: 24px; width: 60px;" class="form-control b-set-quantity" type="number" value="1"  min="1" max="20">
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="list-group list-group-flush list-padding">
+                    <li class="list-group-item">Дата події
+                        <span class="badge badge-success list-group-item__order-badge">
+                            <?= $event->date; ?>
+                        </span>
+                    </li>
+                    <li class="list-group-item">Місце проведення
+                        <span class="badge badge-success list-group-item__order-badge">
+                            <?= $event->place; ?>
+                        </span>
+                    </li>
+                    <li class="list-group-item">Місто
+                        <span class="badge badge-success list-group-item__order-badge">
+                            <?= $event->city; ?>
+                        </span>
+                    </li>
+                    <li class="list-group-item order-qty">Вкажіть кількість квитків
+                        <span class="order-qty__right">
+                            <input class="form-control b-set-quantity order-qty__dimensions" type="number" value="1"  min="1" max="20">
+                        </span>
+                    </li>
+                </ul>
             </div>
             <div class="b-article-buttons">
                 <div class="b-article-about__bid">
@@ -59,7 +57,7 @@ use yii\helpers\Url;
             </div>
         </div>
     </article>
-    <article style="text-align: center; width: 100%; padding:0" class="b-main-content__comments">
-        <h3 style="text-align: center">Комментарии</h3>
+    <article class="b-main-content__comments">
+        <h3 class="b-main-content__comments-header">Коментарі</h3>
     </article>
 </section>

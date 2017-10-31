@@ -10,8 +10,8 @@ class m170911_192234_create_event_table extends Migration
     public function safeUp()
     {
         $this->createTable('event', [
-            'event_id' => $this->primaryKey(11)->notNull(),
-            'category_id' => $this->smallInteger()->notNull(),
+            'event_id' => $this->primaryKey(11),
+            'category_id' => $this->Integer()->notNull(),
             'title' => $this->string()->notNull(),
             'description' => $this->text()->notNull(),
             'image' => $this->string()->notNull(),

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveRecord;
 
 /**
@@ -16,21 +15,34 @@ use yii\db\ActiveRecord;
  * @property integer $quantity
  * @property string $amount
  */
+
 class OrderItems extends ActiveRecord
 {
     /**
-     * @inheritdoc
+     * Returns the name of the table.
+     *
+     * @return string
      */
     public static function tableName()
     {
         return 'order_items';
     }
 
+    /**
+     * Returns order by id.
+     *
+     * @return string
+     */
     public function getOrder()
     {
         return $this->hasOne(Order::className(), ['order_id' => 'order_id']);
     }
 
+    /**
+     * Saves events from the order to the database.
+     *
+     * @return void
+     */
     public static function saveOrderItems($items, $order_id)
     {
         foreach ($items as $id => $item) {

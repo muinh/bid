@@ -1,14 +1,20 @@
 <?php
 
 namespace app\controllers;
+
 use Yii;
+use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
 
-use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\LoginForm;
+use app\models\PasswordResetRequestForm;
+use app\models\ResetPasswordForm;
+use app\models\SignupForm;
 
 class SiteController extends Controller
 {
@@ -32,7 +38,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -52,16 +58,6 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
-    }
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
     }
 
     /**
@@ -122,5 +118,75 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Displays sign-up page.
+     *
+     * @return string
+     */
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Requests password reset.
+     *
+     * @return mixed
+     */
+    public function actionRequestPasswordReset()
+    {
+        $model = new PasswordResetRequestForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'Подальші інструкції надіслано на вашу електронну адресу.');
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Вибачте, неможливо скинути пароль для вказаної електронної адреси.');
+            }
+        }
+
+        return $this->render('passwordResetRequestForm', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Resets password.
+     *
+     * @param string $token
+     * @return mixed
+     * @throws BadRequestHttpException
+     */
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('success', 'Новий пароль збережено.');
+            return $this->goHome();
+        }
+
+        return $this->render('resetPasswordForm', [
+            'model' => $model,
+        ]);
     }
 }

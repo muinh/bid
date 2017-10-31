@@ -1,10 +1,16 @@
 <?php
 
 namespace app\models;
+
 use yii\db\ActiveRecord;
 
 class Cart extends ActiveRecord
 {
+    /**
+     * Adds event data and quantity of tickets to session.
+     *
+     * @return void
+     */
     public function addToCart($event, $qty = 1)
     {
         if(isset($_SESSION['cart'][$event->event_id])){
@@ -21,6 +27,11 @@ class Cart extends ActiveRecord
         $_SESSION['cart.amount'] = isset($_SESSION['cart.amount']) ? $_SESSION['cart.amount'] + $qty * $event->price : $qty * $event->price;
     }
 
+    /**
+     * Deletes event data and quantity of tickets from session.
+     *
+     * @return void
+     */
     public function renderCart($id)
     {
         if(!isset($_SESSION['cart'][$id])) return false;

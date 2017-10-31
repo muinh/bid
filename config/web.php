@@ -7,8 +7,15 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'ru-RU',
+    'language' => 'uk-UK',
     'defaultRoute' => 'category/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'layout' => 'admin',
+            'defaultRoute' => 'order/index',
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -20,6 +27,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => 'site/login'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -33,8 +41,8 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'username',
-                'password' => 'password',
+                'username' => 'dmytropopov.ua@gmail.com',
+                'password' => '',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -54,6 +62,13 @@ $config = [
             'enablePrettyUrl' => true,
 //            'showScriptName' => false,
             'rules' => [
+                'index' => 'category/index',
+                'about' => 'site/about',
+                'contact' => 'site/contact',
+                'login' => 'site/login',
+                'logout' => 'site/logout',
+                'signup' => 'site/signup',
+                'reset-password' => 'site/request-password-reset',
                 'category/<id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
             ],

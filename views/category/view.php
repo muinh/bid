@@ -61,7 +61,7 @@ use app\models\Event;
     <?php endforeach; ?>
     <?php else: ?>
         <section class="b-main-content">
-            <h3 class="b-main-content__cat-empty">В этой категории пока нет событий</h3>
+            <h3 class="b-main-content__cat-empty">В цій категорії подій немає</h3>
         </section>
     <?php endif; ?>
 </section>

@@ -11,9 +11,9 @@ use yii\helpers\Url;
             <thead>
                 <tr>
                     <th>Фото</th>
-                    <th>Наименование</th>
-                    <th>Кол-во</th>
-                    <th>Цена</th>
+                    <th>Назва</th>
+                    <th>Кількість</th>
+                    <th>Ціна</th>
                     <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
                 </tr>
             </thead>
@@ -29,16 +29,16 @@ use yii\helpers\Url;
                 </tr>
             <?php endforeach ?>
                 <tr>
-                    <td colspan="4">Билетов в корзине:</td>
+                    <td colspan="4">Квитків в кошику:</td>
                     <td><?= $session['cart.qtyTotal'] ?> шт</td>
                 </tr>
                 <tr>
-                    <td colspan="4">На сумму:</td>
+                    <td colspan="4">На суму:</td>
                     <td><?= number_format($session['cart.amount'], 2, '.', '')?> грн</td>
                 </tr>
             </tbody>
         </table>
     </div>
 <?php else: ?>
-    <h3>Корзина пуста</h3>
+    <h3>Кошик пустий</h3>
 <?php endif; ?>

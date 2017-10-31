@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
@@ -25,13 +24,18 @@ use yii\db\Expression;
 class Order extends ActiveRecord
 {
     /**
-     * @inheritdoc
+     * Returns the name of the table.
+     *
+     * @return string
      */
     public static function tableName()
     {
         return 'order';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -46,6 +50,11 @@ class Order extends ActiveRecord
         ];
     }
 
+    /**
+     * Returns all items from the order.
+     *
+     * @return string
+     */
     public function getOrderItems()
     {
         return $this->hasMany(OrderItems::className(), ['order_id' => 'order_id']);
@@ -57,7 +66,6 @@ class Order extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'phone'], 'required'],
             [['customer_id', 'quantity', 'status', 'phone'], 'integer'],
             [['amount'], 'number'],
             [['created_at', 'modified_at'], 'safe'],
@@ -71,10 +79,10 @@ class Order extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Имя',
-            'email' => 'E-mail',
+            'name' => 'Ім`я',
+            'email' => 'Електронна адреса',
             'phone' => 'Телефон',
-            'address' => 'Адрес',
+            'address' => 'Адреса',
         ];
     }
 }
