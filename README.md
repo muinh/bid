@@ -72,12 +72,17 @@
 * Implement mechanism with making bids and lotteries in admin panel; 
 
 ### How to install?
-
-
-### Where to get sample images and info for events?
-
-
+* Change directory in console to your project. 
+* Install packages from composer.json by typing next command.
     ```
-    tests/bin/yii serve
+    composer update
     ```
+* Apply migrations.
+    ```
+    yii migrate
+    ```
+* Create directory web/assets. Give access to write in.
+* Fill in the file config/db.php with your database info.
 
+### Where to get data for events?
+Database SQL copy is situated in the root directory as bid.sql.
