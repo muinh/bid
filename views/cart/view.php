@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use app\models\ContactForm;
 ?>
 
 <section class="b-main-content">
@@ -10,7 +11,7 @@ use yii\widgets\ActiveForm;
             <?php if(Yii::$app->session->hasFlash('success')): ?>
                 <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span>&times;</span>
                     </button>
                     <?php echo Yii::$app->session->getFlash('success'); ?>
                 </div>
@@ -19,7 +20,7 @@ use yii\widgets\ActiveForm;
             <?php if(Yii::$app->session->hasFlash('error')): ?>
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span>&times;</span>
                     </button>
                     <?php echo Yii::$app->session->getFlash('error'); ?>
                 </div>
@@ -46,7 +47,7 @@ use yii\widgets\ActiveForm;
                                                         <th>Кількість</th>
                                                         <th>Ціна</th>
                                                         <th>Сума</th>
-                                                        <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
+                                                        <th><span class="glyphicon glyphicon-remove"></span></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -57,7 +58,7 @@ use yii\widgets\ActiveForm;
                                                         <td><?= $event['qty'] ?></td>
                                                         <td><?= $event['price'] ?></td>
                                                         <td><?= number_format($event['qty'] * $event['price'],2, '.', '') ?></td>
-                                                        <td><span data-id="<?= $id ?>" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></td>
+                                                        <td><span data-id="<?= $id ?>" class="glyphicon glyphicon-remove text-danger del-item"></span></td>
                                                     </tr>
                                                 <?php endforeach ?>
                                                 <tr>
@@ -83,8 +84,8 @@ use yii\widgets\ActiveForm;
                                                     <?= $form->field($order, 'customer_id')
                                                         ->hiddenInput(['value' => $id])
                                                         ->label(false) ;
-                                                } ?>
-                                            <?= Html::submitButton('Замовити', ['class' => 'btn btn-success']);
+                                                }?>
+                                                <?= Html::submitButton('Замовити', ['class' => 'btn btn-success']);
                                                 ActiveForm::end(); ?>
                                         </div>
                                         <?php else: ?>

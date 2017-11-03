@@ -13,7 +13,9 @@ class EventController extends Controller
     /**
      * Displays event page with special id.
      *
+     * @param $id
      * @return Response|string
+     * @throws HttpException
      */
     public function actionView($id)
     {

@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'amount')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(['0' => 'Активен', '1' => 'Выполнен',]) ?>
+    <?= $form->field($model, 'status')->dropDownList(['0' => 'Активний', '1' => 'Виконаний',]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

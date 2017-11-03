@@ -843,6 +843,22 @@ a.b-article-pic__link {
 	width: 90%;
 }
 
+.announcement {
+	text-align: center;
+	margin-top: 10%;
+}
+
+.payment-form {
+	margin-top: 4%;
+}
+
+.payment-btn {
+	width: 60%;
+	height: 2em;
+	font-size: 2.5em;
+	margin: 0 10%;
+}
+
 /* Profile */
 
 .b-main-profile__container {

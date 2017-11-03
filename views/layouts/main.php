@@ -43,10 +43,10 @@ AppAsset::register($this);
 			<div class="b-header__menu">
 				<nav id="nav-wrap" class="b-primary-menu">
 					<ul id="nav" class="b-primary-menu__list">
-                        <li class="b-pmenu-item"><a href="<?= Url::to(['/']) ?>" class="b-menu-link">Події</a></li>
+                        <li class="b-pmenu-item"><a href="<?= Url::to(['/']) ?>" class="b-menu-link">Головна</a></li>
                         <li class="b-pmenu-item"><a href="<?= Url::to(['/about']) ?>" class="b-menu-link">Про сервіс</a></li>
                         <li class="b-pmenu-item"><a href="<?= Url::to(['/contact']) ?>" class="b-menu-link">Напишіть нам</a></li>
-                        <li class="b-pmenu-item"><a class="b-menu-link" onclick="return getCart()"><i class="fa-lg fa fa-shopping-cart fa-fw" aria-hidden="true"></i></a></li>
+                        <li class="b-pmenu-item"><a class="b-menu-link" onclick="return getCart()"><i class="fa-lg fa fa-shopping-cart fa-fw"></i></a></li>
                         <?php if (Yii::$app->user->isGuest): ?>
                             <li class="b-pmenu-item"><a href="<?= Url::to(['/login']) ?>" class="b-menu-link">Вхід в аккаунт</a></li>
                         <?php endif ?>

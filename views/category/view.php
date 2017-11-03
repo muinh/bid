@@ -42,14 +42,14 @@ use app\models\Event;
                             <div class="b-article-buttons">
                                 <div class="b-article-about__bid">
                                     <a class="btn btn-lg btn-warning bid-ticket">
-                                        <i class="fa fa-trophy" aria-hidden="true"></i> <?= $event->bid ?>₴
+                                        <i class="fa fa-trophy"></i> <?= $event->bid ?>₴
                                     </a>
                                 </div>
                                 <div class="b-article-about__buy">
                                     <a href="<?= Url::to(['cart/add', 'id' => $event->event_id]) ?>"
                                        data-id="<?= $event->event_id ?>"
                                        class="btn btn btn-lg btn-info buy-ticket add-to-cart">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <?= $event->price ?>₴
+                                        <i class="fa fa-shopping-cart"></i> <?= $event->price ?>₴
                                     </a>
                                 </div>
                             </div>

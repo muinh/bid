@@ -36,8 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                         <?= Html::submitButton('Надіслати повідомлення', ['class' => 'btn btn-success btn-send', 'name' => 'contact-button']) ?>
                     </div>
-
-
                 <?php ActiveForm::end(); ?>
             </div>
             <div class="b-main-content__contact-form-text">

@@ -9,7 +9,9 @@ class Cart extends ActiveRecord
     /**
      * Adds event data and quantity of tickets to session.
      *
-     * @return void
+     * @param $event
+     * @param $qty
+     * @return false|void
      */
     public function addToCart($event, $qty = 1)
     {
@@ -30,7 +32,8 @@ class Cart extends ActiveRecord
     /**
      * Deletes event data and quantity of tickets from session.
      *
-     * @return void
+     * @param $id
+     * @return false or void
      */
     public function renderCart($id)
     {

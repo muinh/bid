@@ -100,22 +100,15 @@ class CartController extends Controller
         $session = Yii::$app->session;
         $session->open();
         $order = new Order();
+
         if ($order->load(Yii::$app->request->post())) {
             $order->quantity = $session['cart.qtyTotal'];
             $order->amount = $session['cart.amount'];
             if ($order->save()) {
                 OrderItems::saveOrderItems($session['cart'], $order->order_id);
                 Yii::$app->session->setFlash('success', 'Ваше замовлення прийнято. 
-               Всю інформацію відносно отримання квитків надіслано на вказану електронну адресу.');
-                Yii::$app->mailer->compose('sendorder', ['session' => $session])
-                    ->setFrom(['dmytropopov.ua@gmail.com' => 'bid.ua'])
-                    ->setTo($order->email)
-                    ->setSubject('Замовлення квитків на bid.ua успішно завершено.')
-                    ->send();
-                $session->remove('cart');
-                $session->remove('cart.qtyTotal');
-                $session->remove('cart.amount');
-                return $this->refresh();
+               Менеджер зв`яжеться із Вами найближчим часом.');
+                return $this->redirect(['/cart/pay']);
             } else {
                 Yii::$app->session->setFlash('error', 'Помилка оформлення замовлення.
                Спробуйте ще раз або напишіть менеджеру через форму зворотнього зв`язку.');
@@ -123,5 +116,38 @@ class CartController extends Controller
         }
 
         return $this->render('view', compact('session', 'order'));
+    }
+
+    public function actionPay()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+
+        $id = Yii::$app->user->id;
+        $public_key = Yii::$app->params['public_key'];
+        $private_key = Yii::$app->params['private_key'];
+
+        $params = array(
+            "public_key" => $public_key,
+            "version" => "3",
+            "action" => "pay",
+            "amount" => $session['cart.amount'],
+            "currency" => "UAH",
+            "description" => date('dmy') . "___" . "id" . $id,
+        );
+
+        $json = json_encode($params);
+        $data = base64_encode($json);
+        $sign_string = $private_key . $data . $private_key;
+        $signature = base64_encode( sha1( $sign_string, 1) );
+
+        $session->remove('cart');
+        $session->remove('cart.qtyTotal');
+        $session->remove('cart.amount');
+
+        return $this->render('pay', [
+            'data' => $data,
+            'signature' => $signature,
+        ]);
     }
 }

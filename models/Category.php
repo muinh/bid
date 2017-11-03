@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
 
@@ -15,6 +16,23 @@ class Category extends ActiveRecord
     public static function tableName()
     {
         return 'category';
+    }
+
+    /**
+     * Gets categories by id.
+     * From cache or from database.
+     *
+     * @return string
+     * */
+    public static function getCategories()
+    {
+        //get cached categories
+        $catCached = Yii::$app->cache->get('catCached');
+        if ($catCached) {
+            return $catCached;
+        } else {
+            return self::find()->indexBy('category_id')->asArray()->all();
+        }
     }
 
     /**

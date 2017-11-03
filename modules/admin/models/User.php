@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "user".
  *
@@ -20,7 +21,7 @@ namespace app\modules\admin\models;
  * @property string $modified_at
  * @property integer $isAdmin
  */
-class User extends \yii\db\ActiveRecord
+class User extends ActiveRecord
 {
     /**
      * @inheritdoc

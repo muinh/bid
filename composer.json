@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "twig/twig": "^2.0",
-        "budyaga/yii2-users": "*"
+        "budyaga/yii2-users": "*",
+        "liqpay/liqpay": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

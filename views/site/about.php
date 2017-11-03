@@ -14,33 +14,30 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="b-about-paragraph">Роби свою ставку та чекай коли розіграш набере достатню кількість гравців.</p>
         <p class="b-about-paragraph">Як тільки останній гравець зробить свою ставку, всі учасники отримають повідомлення із результатами жеребкування та переможцями.</p>
     <div class="b-article-details__info">
-        <h3>
-            <div>
-                <h2 class="b-about-emphasized">Купуй</h2>
-            </div>
+        <div>
+            <h2 class="b-about-emphasized">Купуй</h2>
             <ul>
-                <img src="/bid.loc/web/images/about/student-w.svg" alt="" width="128">
-                <img src="/bid.loc/web/images/about/creditcard.svg" alt="" width="128">
-                <img src="/bid.loc/web/images/about/crowd.svg" alt="" width="128">
+                <img src="../../web/images/about/student-w.svg" alt="" width="128">
+                <img src="../../web/images/about/creditcard.svg" alt="" width="128">
+                <img src="../../web/images/about/crowd.svg" alt="" width="128">
                 <li class="b-about__listItem">Обирай подію, яка тобі подобається.</li>
                 <li class="b-about__listItem">Сплачуй онлайн, швидко та легко.</li>
                 <li class="b-about__listItem">Отримуй свої квитки та насолоджуйся.</li>
             </ul>
-        </h3>
+        </div>
         <h2 class="b-about-emphasized2">ЧИ</h2>
-        <h3>
-            <div>
-                <h2 class="b-about-emphasized">Вигравай</h2>
-            </div>
+        <div>
+            <h2 class="b-about-emphasized">Вигравай</h2>
             <ul>
-                <img src="/bid.loc/web/images/about/student.svg" alt="" width="128">
-                <img src="/bid.loc/web/images/about/dice.svg" alt="" width="128">
-                <img src="/bid.loc/web/images/about/ticket.png" alt="" width="128">
+                <img src="../../web/images/about/student.svg" alt="" width="128">
+                <img src="../../web/images/about/dice.svg" alt="" width="128">
+                <img src="../../web/images/about/ticket.png" alt="" width="128">
                 <li class="b-about__listItem">Обирай подію, яка тобі подобається.</li>
                 <li class="b-about__listItem">Роби свою ставку 1, 5 чи 10 гривень.</li>
                 <li class="b-about__listItem">Вигравай квитки на ДВОХ на обраний захід.</li>
             </ul>
-        </h3>
+        </div>
     </div>
     <h2 class="b-about-emphasized3">Вибір за тобою...</h2>
 </div>
+

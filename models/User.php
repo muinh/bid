@@ -47,6 +47,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Returns user identity by id.
      *
+     * @param $id
      * @return string
      */
     public static function findIdentity($id)
@@ -57,7 +58,10 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Returns user identity by access token.
      *
+     * @param $token
+     * @param $type
      * @return string
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -67,6 +71,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Returns user identity by username.
      *
+     * * @param $username
      * @return string
      */
     public static function findByUsername($username)
@@ -76,7 +81,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Returns user identity by email.
-     *
+     * @param $email
      * @return string
      */
     public static function findByEmail($email)
@@ -87,6 +92,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Returns user identity by password reset token
      *
+     * @param $token
      * @return string
      */
     public static function findByPasswordResetToken($token)
@@ -105,6 +111,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Checks validity of the password reset token.
      *
+     * @param $token
      * @return string
      */
     public static function isPasswordResetTokenValid($token)
@@ -142,6 +149,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Validates user auth key.
      *
+     * * @param $authKey
      * @return string
      */
     public function validateAuthKey($authKey)
@@ -152,6 +160,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Validates user password.
      *
+     * @param $password
      * @return string
      */
     public function validatePassword($password)
@@ -162,7 +171,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Sets user password hash.
      *
-     * @return string
+     * @return void
      */
     public function setPassword($password)
     {
@@ -172,7 +181,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Generates auth key.
      *
-     * @return string
+     * @return void
      */
     public function generateAuthKey()
     {
@@ -182,7 +191,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Generates password reset token.
      *
-     * @return string
+     * @return void
      */
     public function generatePasswordResetToken()
     {
@@ -192,7 +201,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Removes password reset token.
      *
-     * @return string
+     * @return void
      */
     public function removePasswordResetToken()
     {

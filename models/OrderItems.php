@@ -41,6 +41,9 @@ class OrderItems extends ActiveRecord
     /**
      * Saves events from the order to the database.
      *
+     * @param items
+     * @param order_id
+     *
      * @return void
      */
     public static function saveOrderItems($items, $order_id)
