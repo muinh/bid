@@ -18,7 +18,7 @@
 2. Javascript ES5.
 3. jQuery (JS library).
 4. Twitter Bootstrap.
-5. LiqPay SDK.
+5. LiqPay API.
 
 ### What is done?
 * General structure of the website and design;
